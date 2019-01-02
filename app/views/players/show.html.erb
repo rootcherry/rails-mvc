@@ -1,0 +1,16 @@
+<h1><%= "This is the profile page for " + @player.first_name  + " " + @player.last_name %></h1>
+
+<table>
+	<thead>
+		<td>First Name</td>
+		<td>Last Name</td>
+	</thead>
+	<tbody>
+		<tr>
+			<td><%= @player.first_name %></td>
+			<td><%= @player.last_name %></td>
+		</tr>
+	</tbody>
+</table>
+<br>
+<a href="/players">Home Page</a>
