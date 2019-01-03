@@ -4,15 +4,16 @@ class PlayersController < ApplicationController
 	end
 
 	def new
+		@player = Player.new
 	end
 
 	def create
 		player = Player.new(player_params)
 		if player.save
-			redirect_to "/players"
+			redirect_to :root #root_path
 		else
 			flash[:errors] = player.errors.full_messages
-			redirect_to "/players/new"
+			redirect_to :back
 		end
 	end
 
@@ -27,17 +28,19 @@ class PlayersController < ApplicationController
 	def update
 		player = Player.find(params[:id])
 		if player.update(player_params)
-			redirect_to "/players"
+			redirect_to :root
 		else
 			flash[:errors] = player.errors.full_messages
-			redirect_to "/players/#{player.id}/edit"
+			#redirect_to "/players/#{player.id}/edit"
+			#redirect_to player_edit_path(player.id)
+			redirect_to :back
 		end
 	end
 
 	def destroy
 		player = Player.find(params[:id])
 		player.destroy
-		redirect_to "/players"
+		redirect_to :root
 	end
 
 private 

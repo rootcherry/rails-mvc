@@ -1,4 +1,6 @@
-<h1>There are <%= @players.count %> players in our list</h1>
+<% content_for(:title, "Players") %>
+
+<h1>Listing <%= pluralize(@players.length, "player") %></h1>
 
 <table>
 	<thead>
@@ -15,13 +17,13 @@
 			<td><%= player.first_name %></td>
 			<td><%= player.last_name %></td>
 			<td>
-				<a href="/players/<%= player.id %>">Show</a> |
-				<a href="/players/<%= player.id %>/edit">Edit</a> |
-				<a href="/players/<%= player.id %>" data-method="delete" data-confirm="Are you sure?">Delete</a>
+				<%= link_to "Show", player_path(player.id) %> |
+				<%= link_to "Edit", player_edit_path(player.id) %> |
+				<%= link_to "Delete", player_path(player.id), data: {method: :delete, confirm: "Are you sure?" } %>
 			</td>
 		</tr>
 		<% end %>
 	</tbody>
 </table>
 <br>
-<a href="/players/new">Add New Player</a>
+<%= link_to "Add New Player", players_new_path %>
